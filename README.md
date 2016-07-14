@@ -26,6 +26,8 @@ id was 11b4f36b58a0. Obviously your id will be something different.
 	11b4f36b58a0        mchirico/facebook-group-scrape   "/bin/sh -c 'cd src &"   About a minute ago  
 
     # Now bring the database.sqlite file to your host
+	# My id was 11b4f36b58a0. Yours will be different
+	
     docker cp 11b4f36b58a0:/src/data/database.sqlite .
 
 At this point you should have data from 2016-05-28 from the Facebook Group "Unofficial Cheltenham Township",
@@ -46,13 +48,16 @@ look for group_id.  For example, https://www.facebook.com/groups/TheCheltenhamCh
 the group_id=999833573397613.
 
 
+That's it. You're done the quick run of the prototype.
 
-## Step 0:  
 
-Just run mainRun.sh  It should have a working token
-and everything else. This way you can see if it works.
+# Going Further
 
-           ./mainRun.sh
+If you don't want to run this from a Docker image, you'll need to 
+install Pandas. You can look at the requirement.txt file. This is
+setup for Python 2.7
+
+
 
 
 
