@@ -58,6 +58,12 @@ install Pandas. You can look at the requirement.txt file. This is
 setup for Python 2.7
 
 
+## Reference:
+
+Here's an example of getting the group id.
+
+![](https://raw.githubusercontent.com/mchirico/mchirico.github.io/master/p/images/groupid.png =400x)
+
 
 
 
