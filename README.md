@@ -62,7 +62,7 @@ setup for Python 2.7
 
 Here's an example of getting the group id.
 
-![](https://raw.githubusercontent.com/mchirico/mchirico.github.io/master/p/images/groupid.png =400x)
+![](https://raw.githubusercontent.com/mchirico/mchirico.github.io/master/p/images/groupid.png=400x)
 
 
 
