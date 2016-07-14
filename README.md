@@ -51,18 +51,18 @@ the group_id=999833573397613.
 That's it. You're done the quick run of the prototype.
 
 
-# Going Further
-
-If you don't want to run this from a Docker image, you'll need to 
-install Pandas. You can look at the requirement.txt file. This is
-setup for Python 2.7
-
-
 ## Reference:
 
 Here's an example of getting the group id.
 
 ![](https://raw.githubusercontent.com/mchirico/mchirico.github.io/master/p/images/groupid.png)
+
+
+# Going Further
+
+If you don't want to run this from a Docker image, you'll need to 
+install Pandas. You can look at the requirement.txt file. This is
+setup for Python 2.7
 
 
 
