@@ -32,12 +32,18 @@ At this point you should have data from 2016-05-28 from the Facebook Group "Unof
 Facebook group id 25160801076.  You can put your own group id in **tokenf.py**
 
 	cat tokenf.py
+	
+	TOKEN='173263836xx..D4'  # <--- This token may have expired. Replace with your own.
 	...
-    FACEBOOK_GROUP='25160801076'
+    FACEBOOK_GROUP='25160801076'  # <----- Set to the group you want.
 
 
 Note. You shoud set your own TOKEN. It's likely that after 90 days the TOKEN in this
 docker file will have expired.
+
+If you're having trouble getting the group id, view the Facebook page source and
+look for group_id.  For example, https://www.facebook.com/groups/TheCheltenhamChronicle.org/ has
+the group_id=999833573397613.
 
 
 

@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Mike Chirico <mchirico@gmail.com>
 RUN apt-get update
-RUN apt-get install -y python sqlite3
+RUN apt-get install -y python sqlite3 vim
 RUN apt-get install -y python-setuptools python-dev build-essential python-pip
 RUN mkdir /src
 ADD requirements.txt /src
