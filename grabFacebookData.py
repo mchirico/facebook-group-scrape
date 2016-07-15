@@ -133,7 +133,7 @@ def parseJ(k):
                 cmsg=re.sub("[^A-Za-z0-9\)\,\; \(\@\:\+\'\,\-\=\?\n!\#\=\./\&]+", '',j['message'])
                 cmsg=cmsg.replace("'",'{APOST}')
                 cmsg=cmsg.replace(",",'{COMMA}')
-                cmsg=cmsg.replace("\n",'{RET}')                
+                cmsg=cmsg.replace("\n",'{RET}')
                 f_comments.write(id+','+cid+','+ctime+','+cfrom_id+','+cname+',,'+cmsg+'\n')
                 if 'comments' in j:
                     Comments_on_comments = j['comments']['data']
@@ -143,7 +143,11 @@ def parseJ(k):
                         ccmsg=re.sub("[^A-Za-z0-9\)\,\; \(\@\:\+\'\,\-\=\?\n!\#\=\./\&]+", '',ccmsg)
                         ccmsg=ccmsg.replace("'",'{APOST}')
                         ccmsg=ccmsg.replace(",",'{COMMA}')
-                        ccmsg=ccmsg.replace("\n",'{RET}')                                        
+                        ccmsg=ccmsg.replace("\n",'{RET}')
+                        if 'from' in p:
+                            if 'id' in p['from']:
+                                ccid=p['from']['id']
+                                ctime=p['created_time']
                         f_comments.write(id+','+cid+','+ctime+','+cfrom_id+','+cname+','+ccid+',"'+ccmsg+'"\n')
                 if 'likes' in j and 'data' in j['likes']:
                     Clikes=j['likes']['data']
@@ -203,7 +207,7 @@ def writeMembers(k):
 # k['data'][0]['message']
 # k['data'][0]['permalink_url']
 def getJson(limit=13,since='2016-05-25',until='2016-05-26'):
-    url='https://graph.facebook.com/v2.5/'+FACEBOOK_GROUP+'/feed?fields=reactions.limit(500){link,name,pic_square,type},message,name,id,created_time,permalink_url,shares,comments.limit(500){created_time,likes.limit(500),message,from,comments.limit(500){likes,message}},from&limit=%s&since=%s&until=%s&access_token=%s' % (limit,since,until,TOKEN)
+    url='https://graph.facebook.com/v2.5/'+FACEBOOK_GROUP+'/feed?fields=reactions.limit(500){link,name,pic_square,type},message,name,id,created_time,permalink_url,shares,comments.limit(500){created_time,likes.limit(500),message,from,comments.limit(507){likes,message,from,created_time}},from&limit=%s&since=%s&until=%s&access_token=%s' % (limit,since,until,TOKEN)
     user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
     values = {}
     headers = { 'Authorization':  BEAR}
