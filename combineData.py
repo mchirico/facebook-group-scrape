@@ -252,7 +252,10 @@ def dataExists():
     mem.drop_duplicates(inplace=True)
 
 
+    # Final drop duplicate check, it's funny with timeStamps...spaces?
 
+    c['timeStamp']=pd.DatetimeIndex(c.timeStamp)
+    m['timeStamp']=pd.DatetimeIndex(m.timeStamp)
 
     m.drop_duplicates(subset=['gid','pid', 'id', 'name', 'timeStamp', 'shares', 'url', 'msg','likes'],inplace=True)
     c.drop_duplicates(subset=['gid','pid', 'cid', 'timeStamp', 'id', 'name', 'rid', 'msg'],inplace=True)

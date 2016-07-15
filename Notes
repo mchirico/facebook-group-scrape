@@ -1,0 +1,36 @@
+
+These are my notes:
+
+Update Dockerfile?
+
+  docker build -t mchirico/facebook-group-scrape:latest .
+  docker push mchirico/facebook-group-scrape
+
+
+
+Don't forget to get rid of all your pesky images:
+
+  docker rm $(docker ps -aq)
+
+
+
+
+TODO:
+
+1. Documentation and inprove date rage selection. It's hard
+wired into the program.
+
+
+
+You had to separate out the two python program because
+it releases memory for pandas. Eventually, you'll need to
+fix this, and put everything in one python program.
+
+   1. grabFacebookData.py
+   2. combineData.py
+
+
+
+
+
+
