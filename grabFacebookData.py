@@ -277,7 +277,8 @@ def main(N):
             print(_e)
     else:
         limit=1000
-        T0=datetime.datetime(2016, 5, 28, 0, 0)
+#        T0=datetime.datetime(2016, 5, 28, 0, 0)
+        T0=datetime.datetime(tokenf.START_YEAR, tokenf.START_MONTH, tokenf.START_DAY, 0, 0)
         while T0 < datetime.datetime.now()+datetime.timedelta(7):
             print(T0.strftime('%Y-%m-%d'))
             T1=T0+datetime.timedelta(7)

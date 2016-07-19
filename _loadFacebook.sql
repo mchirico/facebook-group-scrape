@@ -1,6 +1,6 @@
 --
---  Will need to fix this, since with a lot of data it will
---  take too long.
+--
+--
 
 create table if not exists post (
 gid text,
@@ -49,6 +49,10 @@ create index if not exists ilname on like(name);
 
 
 -- comment
+--  SQLITE imports data as text, which means you won's
+--  get null values.  Should this be set later?
+--
+--  UPDATE comment SET rid=NULL WHERE rid='';
 
 create table if not exists comment (
 gid text,
