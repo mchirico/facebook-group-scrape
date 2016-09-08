@@ -9,8 +9,8 @@ Update Dockerfile?
 
 Test run
 
-  docker run -it mchirico/facebook-group-scrape /bin/sh -c 'cd src && ./mainRun.sh'
-  
+  mkdir -p tmp
+  docker run -it -v `pwd`/tmp:/tmp/data mchirico/facebook-group-scrape /bin/sh -c 'cd src && ./mainRun.sh'   
 
 
 Don't forget to get rid of all your pesky images:

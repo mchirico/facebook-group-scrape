@@ -4,10 +4,16 @@ Code for collecting data on any public Facebook group.
 ## Quick Start: Doing a test run from docker
 
     docker pull mchirico/facebook-group-scrape
-	
+
+
+Create a tmp dir
+
+    mkdir -p tmp
+
+
 Once the image is downloaded, run it.
 
-    docker run -it mchirico/facebook-group-scrape /bin/sh -c 'cd src && ./mainRun.sh'
+	docker run -it -v `pwd`/tmp:/tmp/data mchirico/facebook-group-scrape /bin/sh -c 'cd src && ./mainRun.sh'
 	
 	2016-05-28
 	2016-06-04
