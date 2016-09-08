@@ -7,6 +7,11 @@ Update Dockerfile?
   docker push mchirico/facebook-group-scrape
 
 
+Test run
+
+  docker run -it mchirico/facebook-group-scrape /bin/sh -c 'cd src && ./mainRun.sh'
+  
+
 
 Don't forget to get rid of all your pesky images:
 

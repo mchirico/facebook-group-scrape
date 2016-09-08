@@ -159,10 +159,8 @@ def parseJ(k):
             
             
 
-
-
-def members(limit=20):
-    url='https://graph.facebook.com/v2.5/'+FACEBOOK_GROUP+'/members?fields=picture,name&limit=%s&access_token=%s' % (limit,TOKEN)
+def members(limit=2000):
+    url='https://graph.facebook.com/v2.7/'+FACEBOOK_GROUP+'/members?fields=picture,name&limit=%s&access_token=%s' % (limit,TOKEN)
     user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
     values = {}
     headers = { 'Authorization':  BEAR}
@@ -178,14 +176,32 @@ def members(limit=20):
         the_page = response.read()
         json_data = json.loads(the_page)
     except:
-        print("Error reading data from members"+FACEBOOK_GROUP)
+        print("Error reading data members")
     return json_data
 
+def getJSONfromURL(url):
+    user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
+    values = {}
+    headers = { 'Authorization':  BEAR}
+    h = MyHTTPRedirectHandler()
+    opener = urllib2.build_opener(h)
+    urllib2.install_opener(opener)
+    data = urllib.urlencode(values)
+    json_data = ""
+    try:
+        req = urllib2.build_opener(h)
+        req = urllib2.Request(url)
+        response = urllib2.urlopen(req)
+        the_page = response.read()
+        json_data = json.loads(the_page)
+    except:
+        print("Error reading data members")
+    return json_data
 
 def writeMembers(k):
     if 'data' not in k:
         return
-    f=open(TMPDIR+'/members.csv','w')    
+    f=open('members.csv','w')    
     for i in k['data']:
         picture=''
         name=i['name']
@@ -194,7 +210,24 @@ def writeMembers(k):
         if 'picture' in i:
             picture=i['picture']['data']['url']
         f.write(str(id)+','+name+','+str(picture)+'\n')
-    f.close()        
+    f.close()
+
+
+def writeMembersNext(k):
+    if 'data' not in k:
+        return
+    f=open('members.csv','a')    
+    for i in k['data']:
+        picture=''
+        name=i['name']
+        name=re.sub("[^A-Za-z0-9\)\; \(\@\:\+\-\=\?\n!\#\=\./\&]+", '',name)
+        id=i['id']
+        if 'picture' in i:
+            picture=i['picture']['data']['url']
+        f.write(str(id)+','+name+','+str(picture)+'\n')
+    f.close()
+
+    
         
             
 
@@ -264,9 +297,28 @@ def Open(FILE):
 
 
 
+def NextPage(j):
+    if 'paging' in j:
+        if 'next' in j['paging']:
+            url = url=j['paging']['next']
+            return True,url
+    return False, None
+
+
+
+def processMembers():
+    k=members(limit=2000)
+    writeMembers(k)
+    (state,url) = NextPage(k)
+    while state:
+        k=getJSONfromURL(url)
+        writeMembersNext(k)
+        (state,url) = NextPage(k)    
+
 
 def main(N):
-    writeMembers(members(limit=3000))
+    #writeMembers(members(limit=3000))
+    processMembers()    
     if len(sys.argv) > 1: # You haven't fixed this
         return  # Take out return
         try:
