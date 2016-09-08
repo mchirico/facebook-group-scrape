@@ -201,7 +201,7 @@ def getJSONfromURL(url):
 def writeMembers(k):
     if 'data' not in k:
         return
-    f=open('members.csv','w')    
+    f=open(TMPDIR+'/members.csv','w')    
     for i in k['data']:
         picture=''
         name=i['name']
@@ -216,7 +216,7 @@ def writeMembers(k):
 def writeMembersNext(k):
     if 'data' not in k:
         return
-    f=open('members.csv','a')    
+    f=open(TMPDIR + '/members.csv','a')    
     for i in k['data']:
         picture=''
         name=i['name']
